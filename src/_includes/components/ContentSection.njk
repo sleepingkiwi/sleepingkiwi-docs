@@ -1,0 +1,53 @@
+{#
+  ContentSection
+  Almost every content block on the site is one of these.
+  There are a few variants for single/double column and various background options.
+  You could rop this approach or add more options to suit your site...
+  ---
+  CMS _data:
+    -
+  ---
+  args:
+    class='',
+      String
+      Optional (adds custom classes to the <section> tag)
+    id=''
+      String
+      Optional
+    collapseTop=false, // give some control over padding consecutive sections...
+    isAChild=false // does it not constitute a whole <section>?
+  ---
+#}
+
+{# import components #}
+
+{% macro ContentSection(
+  class='',
+  id='',
+  collapseTop=false,
+  isAChild=false
+) %}
+{% set content = caller() %} {# ref: https://github.com/mozilla/nunjucks/issues/664 #}
+
+  <{{ 'section' if not isAChild else 'div'}}
+    class="ContentSection {{
+      class
+    }} ContentSection--{{
+      'top-collapse' if collapseTop else 'uncollapsed'
+    }}"
+
+    {% if id %}
+      id={{id}}
+    {% endif %}
+  >
+
+    {#
+      The actual content.
+      This will be one or two columns of stuff!
+    #}
+    <div class="ContentSection__content u-flows">
+      {{ content }}
+    </div>
+  </{{ 'section' if not isAChild else 'div'}}>
+
+{% endmacro %}

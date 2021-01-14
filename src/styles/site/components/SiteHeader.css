@@ -1,0 +1,91 @@
+/** SiteHeader
+ *  ------------------------------------------------------------------------------------------------
+**/
+
+.SiteHeader {
+  padding: var(--bsu) 0;
+  background-color: var(--colour-background-subtle);
+  color: var(--colour-primary);
+  position: relative;
+  z-index: var(--z-fixed-header);
+
+  & .Wrap {
+    padding: var(--bsu);
+  }
+
+  & svg path {
+    fill: var(--colour-primary);
+  }
+}
+
+@media (--column-break) {
+
+  .SiteHeader {
+    width: 30%;
+    max-width: 20rem;
+  }
+}
+
+
+/** Header logo
+ *  ------------------------------------------------------------------------------------------------
+**/
+.SiteHeader__logo {
+  font-size: var(--s1);
+  word-wrap: break-word;
+
+  & > a {
+    display: block;
+    color: var(--colour-subtle);
+
+    &:hover,
+    &:focus {
+      color: var(--colour-secondary);
+    }
+  }
+
+  & .Logo > .SvgWrap,
+  & .Logo > img {
+    max-width: 100%;
+  }
+}
+
+.SiteHeader__nav-wrap {
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+
+.SiteHeader__nav {
+  /* allow nav to grow but not logo */
+  display: block;
+  font-size: var(--s0);
+  margin-top: 0;
+
+  & ul ul {
+    --flow-space: var(--bsu-s);
+
+    padding: var(--bsu-s) 0 0 var(--bsu-s);
+  }
+
+  & li {
+    display: block;
+  }
+
+  & a {
+    color: var(--colour-primary);
+    display: block;
+    position: relative;
+    word-wrap: break-word;
+
+    &:hover,
+    &:focus {
+      color: var(--colour-secondary);
+    }
+  }
+
+  & .nav__item--current > a {
+    font-weight: bold;
+    border-bottom: 2px solid;
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "port": 4069,
+  "serve": "dist",
+  "bind": "localhost",
+  "delay": 100,
+  "quiet": true,
+  "watchexps": [
+    "src/js/**/*.js # npm run scripts:dev",
+    "src/js/**/*.svelte # npm run scripts:dev",
+    "src/styles/**/*.css # npm run styles:dev # reloadcss",
+    "dist/**/*.html",
+    "src/images/"
+  ],
+  "http2": false,
+  "open": false
+}

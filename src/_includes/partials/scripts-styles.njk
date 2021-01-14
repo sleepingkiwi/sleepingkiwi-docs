@@ -1,0 +1,95 @@
+{#
+  Loading scripts and styles.
+  -
+  See `Serving more modern JavaScript` and `Cache busting` in readme.md
+#}
+<link rel="preload" as="script" href="{{rev['/main.modules.js'] or '/main.modules.js'}}" crossorigin>
+
+{#
+  Loading polyfills for older browsers.
+  -
+  make sure this loading method is suitable for the polyfills you want to load.
+  Look at `Loading polyfills` in readme.md for more info
+#}
+<script nomodule src="{{rev['/polyfills.js'] or '/polyfills.js'}}"></script>
+
+{#
+  More details in the readme.
+  We run a test for browsers that cut the mustard.
+  If they don't, they get the no-js experience...
+  This might not be what you want! It depends on the JS you use
+  and if you have a good no-js experience to fall back on
+#}
+<script>
+  // we mainly want to ensure classList support but also checking element closest
+  // closest is something we use a few times but also conveniently gates some browsers we don't
+  // want to load js for anyway: https://caniuse.com/?search=closest
+  // more modern script for more modern browsers
+  if (
+    !Element.prototype.closest
+    || !('classList' in document.createElement("_"))
+  ) {
+    document.documentElement.className = document.documentElement.className.replace(/(^|\s)no-js(\s|$)/, ' no-js no-js--hagard');
+  } else {
+    function $loadjs(src, fallback) {
+      s = document.createElement('script');
+      // avoids double loading issues in Safari 10.1 which supports module but not nomodule...
+      if ('noModule' in s) s.type = 'module', s.src = src;
+      else s.src = fallback;
+      document.head.appendChild(s);
+    }
+
+    $loadjs('{{rev['/main.modules.js'] or '/main.modules.js'}}', '{{rev['/main.js'] or '/main.js'}}');
+
+    // feature detect intersection observer
+    // we disable some styling and don't try to fade images if it's not supported
+    const gotIntersction = (
+      ('IntersectionObserver' in window)
+      && ('IntersectionObserverEntry' in window)
+      && ('intersectionRatio' in window.IntersectionObserverEntry.prototype)
+      && ('isIntersecting' in window.IntersectionObserverEntry.prototype)
+    );
+
+    document.documentElement.className = document.documentElement.className.replace(/(^|\s)no-js(\s|$)/, ' js ' + (gotIntersction ? 'got-intersection ' : 'no-intersection '));
+  }
+</script>
+
+
+{#
+  Blocking styles after inline sync scripts
+  -
+  https://csswizardry.com/2018/11/css-and-network-performance/
+#}
+<link rel="stylesheet" href="{{rev['/styles/main.css'] or '/styles/main.css'}}">
+
+
+{#
+  Loading google fonts using optimisations from:
+  https://csswizardry.com/2020/05/the-fastest-google-fonts/
+  - 1. Preemptively warm up the fonts’ origin.
+  -
+  - 2. Initiate a high-priority, asynchronous fetch for the CSS file. Works in
+  -    most modern browsers.
+  -
+  - 3. Initiate a low-priority, asynchronous fetch that gets applied to the page
+  -    only after it’s arrived. Works in all browsers with JavaScript enabled.
+  -
+  - 4. In the unlikely event that a visitor has intentionally disabled
+  -    JavaScript, fall back to the original method. The good news is that,
+  -    although this is a render-blocking request, it can still make use of the
+  -    preconnect which makes it marginally faster than the default.
+#}
+
+{# [1] #}
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+{# [2] #}
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;800&display=swap" />
+
+{# [3] #}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;800&display=swap" media="print" onload="this.media='all'" />
+
+{# [4] #}
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;800&display=swap" />
+</noscript>

@@ -1,0 +1,23 @@
+{#
+  Extend base template
+#}
+{% extends 'layouts/base.njk' %}
+
+{#
+  Import components
+#}
+{% from "components/CustomContent.njk" import CustomContent with context %}
+
+{% block content %}
+  <main id="main-content" class="site-main site-main--page" tabindex="-1">
+    <div class="site-main__nav-link">
+      <a href="#top">
+        <div class="site-main__nav-link__hamburger"></div>
+        <span class="visuallyhidden">To navigation menu</span>
+      </a>
+    </div>
+    {{
+      CustomContent(genericContentBlocks)
+    }}
+  </main>
+{% endblock %}

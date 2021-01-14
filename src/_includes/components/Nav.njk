@@ -1,0 +1,75 @@
+{#
+  Nav component
+  ---
+  CMS _data:
+    navigation
+  ---
+  args:
+    currentNavigation
+      Optional
+      Object shape:
+        {
+          items: [...]
+            Required
+            Array
+              of shapes: {
+                text: "Cookies & Privacy Policy",
+                  Required
+                  String
+                url: "/privacy",
+                  Required
+                  String
+                external: false
+                  Required
+                  Boolean
+              }
+        }
+  ---
+#}
+
+{% macro Nav(
+  currentNavigation
+) %}
+{% if not currentNavigation %}
+  {#
+    if we haven't been passed a navigation object, default to the global _data/navigation.json
+  #}
+  {% set currentNavigation = navigation %}
+{% endif %}
+
+{% if currentNavigation.items %}
+  <nav class="nav">
+    <ul class="u-flows">
+      {% for item in currentNavigation.items %}
+        {% set currentAttribute = '' %}
+
+        {% if page.url == item.url %}
+          {% set currentAttribute = ' aria-current="page"' %}
+        {% endif %}
+
+        <li class="nav__item {{'nav__item--current' if page.url == item.url}}">
+          <a href="{{ item.url }}#main-content" {{ currentAttribute | safe }}>{{ item.text }}</a>
+
+          {% if page.url == item.url %}
+            <ul class="u-flows">
+              {% for item in genericContentBlocks %}
+                {% for content in item.content %}
+                  {% if content.type === 'header' %}
+                    <li
+                      class="nav__item">
+                        <a href="{{ page.url + '#heading-anchor--' + ((content.header or content.pre or content.post) | slug) }}">
+                          {{ content.header or content.pre or content.post }}
+                        </a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              {% endfor %}
+            </ul>
+          {% endif %}
+          {# ^^ sub nav on current pages #}
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+{% endif %}
+{% endmacro %}

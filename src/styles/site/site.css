@@ -1,0 +1,111 @@
+/** global or base site css
+ *  ------------------------------------------------------------------------------------------------
+ *  Here's where you can put all of your site specific code that should apply globally or isn't
+ *  specific to any components etc.
+**/
+
+/* scale fonts based on screen size - included as an example - remove if you want! */
+@import '_scale-fonts.css';
+
+/** body defaults
+ *  ------------------------------------------------------------------------------------------------
+**/
+body {
+  line-height: 1.5;
+  font-family: var(--ff-body);
+  color: var(--colour-primary);
+  background-color: var(--colour-background-body);
+
+  /*
+    Sometimes required for skinny fonts - particularly for light on dark text.
+    Only applies on Mac OS.
+  */
+  /*
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  */
+
+  & > main {
+    flex: 1;
+    outline: 0; /* it's focusable because it has tabindex to allow us to skip to it */
+  }
+
+  & .SiteHeader {
+    flex: 0 0 auto;
+  }
+}
+
+@media (--column-break) {
+
+  body {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}
+
+
+/** mobile nav link
+ *  ------------------------------------------------------------------------------------------------
+**/
+.site-main__nav-link {
+  position: sticky;
+  z-index: var(--z-fixed-header-nav);
+  top: 0;
+  right: 0;
+  text-align: right;
+  background-color: var(--colour-background-body);
+  box-shadow: 0 0 2px 2px var(--colour-background-body);
+
+  & a {
+    display: inline-block;
+    padding: calc(var(--bsu-s) + var(--bsu-xs)) var(--bsu);
+  }
+
+  & .site-main__nav-link__hamburger {
+    width: 1.5rem;
+    height: 4px;
+    background: var(--colour-primary);
+    position: relative;
+    border-radius: 4px;
+
+    &::before,
+    &::after {
+      content: ' ';
+      width: 100%;
+      height: 4px;
+      left: 0;
+      top: calc(var(--bsu-xs) * -1);
+      background: var(--colour-primary);
+      position: absolute;
+      border-radius: 4px;
+    }
+
+    &::after {
+      top: var(--bsu-xs);
+    }
+  }
+}
+
+@media (--column-break) {
+
+  .site-main__nav-link {
+    display: none;
+  }
+}
+
+/** lock scrolling if popups are active
+ *  ------------------------------------------------------------------------------------------------
+**/
+.js--has-popup {
+  height: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/** if we want main content not to float centrally:
+ *  ------------------------------------------------------------------------------------------------
+**/
+/* .site-main {
+  flex: 1;
+} */

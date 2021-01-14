@@ -1,0 +1,35 @@
+/** Flowing
+ *  ------------------------------------------------------------------------------------------------
+ *  flow adds consistent margin-top to child elements of a container with class .u-flows
+ *  margin-top is added to direct descendants apart from the first child.
+ *  the > * + * selector targets elements with a preceding sibling.
+ *  -
+ *  ref: https://24ways.org/2018/managing-flow-and-rhythm-with-css-custom-properties/
+**/
+
+/** em or rem?
+ *  ------------------------------------------------------------------------------------------------
+ *  look at `../settings/_layout.css` to explain choices
+**/
+/*
+  We need to scope these to root if we want PostCSS to be able to expand them for us...
+  ref: https://github.com/postcss/postcss-custom-properties/issues/223
+  -
+  originally we had these scoped only to `.u-flows`
+*/
+:root {
+  --flow-space: var(--bsu);
+}
+
+.u-flows {
+  --flow-space: var(--bsu);
+}
+
+/** overwrite the default?
+ *  ------------------------------------------------------------------------------------------------
+ *  you can overwrite the default on individual elements by changing the value of --flow-space for
+ *  the element you want to change!
+**/
+.u-flows > * + * {
+  margin-top: var(--flow-space);
+}

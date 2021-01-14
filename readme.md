@@ -1,4 +1,4 @@
-#sleepingkiwi docs
+# sleepingkiwi docs
 
 For writing documentation to be hosted as a static site.
 

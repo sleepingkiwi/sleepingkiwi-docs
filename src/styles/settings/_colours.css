@@ -1,0 +1,23 @@
+:root {
+  /** primary colours
+   *  ----------------------------------------------------------------------------------------------
+   *  contrast ratios given against --colour-background-body
+   *  check them at https://color.review
+  **/
+  --colour-primary: #185397; /* contrast ratio 7.2 */
+  --colour-secondary: #a11b50; /* contrast ratio 7 */
+  --colour-highlight: #005871; /* contrast ratio 7.5 */
+  --colour-subtle: #5f7389; /* only AA for text - contrast ratio 4.6 -- https://color.review */
+
+  /** inverted colours
+   *  ----------------------------------------------------------------------------------------------
+  **/
+  --colour-invert: #f4f9fa;
+  --colour-invert-subtle: #ffffff;
+
+  /** backgrounds
+   *  ----------------------------------------------------------------------------------------------
+  **/
+  --colour-background-body: #f4f9fa;
+  --colour-background-subtle: #ffffff;
+}

@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "text": "Home",
+      "url": "/",
+      "external": false
+    },
+    {
+      "text": "Test Page",
+      "url": "/a-page/",
+      "external": false
+    }
+  ]
+}
