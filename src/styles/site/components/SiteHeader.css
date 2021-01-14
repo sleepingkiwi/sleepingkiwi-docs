@@ -50,10 +50,13 @@
   }
 }
 
-.SiteHeader__nav-wrap {
-  position: sticky;
-  top: 0;
-  left: 0;
+@media (--column-break) {
+
+  .SiteHeader__nav-wrap {
+    position: sticky;
+    top: 0;
+    left: 0;
+  }
 }
 
 .SiteHeader__nav {

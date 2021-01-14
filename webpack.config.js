@@ -29,14 +29,9 @@ module.exports = (env = {}) => {
       mode: isProduction ? 'production' : 'development',
 
 
-      // all svelte specific.
-      // see: https://github.com/sveltejs/svelte-loader#usage
       resolve: {
-        alias: {
-          svelte: path.resolve('node_modules', 'svelte'),
-        },
-        extensions: ['.mjs', '.js', '.svelte'],
-        mainFields: ['svelte', 'browser', 'module', 'main'],
+        extensions: ['.mjs', '.js'],
+        mainFields: ['browser', 'module', 'main'],
       },
 
       entry: {
@@ -98,9 +93,6 @@ module.exports = (env = {}) => {
        *  ------------------------------------------------------------------------------------------
        *  loaders are used to tell webpack how to interpret different file types.
        *  run bottom to top
-       *  running svelte js through babel - we also have to include the svelte code from
-       *  node_modules for this...
-       *  ref: https://github.com/sveltejs/svelte-loader/issues/108#issuecomment-614861126
       **/
       module: {
         rules: [
@@ -145,33 +137,6 @@ module.exports = (env = {}) => {
               },
             },
           },
-          {
-            test: /\.svelte$/,
-            exclude: /node_modules\/(?!svelte)/,
-            use: [
-              {
-                loader: 'babel-loader',
-                options: {
-                  presets: [
-                    [
-                      '@babel/preset-env',
-                      {
-                        useBuiltIns: 'usage',
-                        corejs: '3.4',
-                        debug: isProduction,
-                      },
-                    ],
-                  ],
-                },
-              },
-              {
-                loader: 'svelte-loader',
-                options: {
-                  dev: !isProduction,
-                },
-              },
-            ],
-          },
         ],
       },
     }, // nomodules config (heavily transpiled)
@@ -191,14 +156,9 @@ module.exports = (env = {}) => {
       **/
       mode: isProduction ? 'production' : 'development',
 
-      // all svelte specific.
-      // see: https://github.com/sveltejs/svelte-loader#usage
       resolve: {
-        alias: {
-          svelte: path.resolve('node_modules', 'svelte'),
-        },
-        extensions: ['.mjs', '.js', '.svelte'],
-        mainFields: ['svelte', 'browser', 'module', 'main'],
+        extensions: ['.mjs', '.js'],
+        mainFields: ['browser', 'module', 'main'],
       },
 
       entry: {
@@ -282,36 +242,6 @@ module.exports = (env = {}) => {
                 ].filter((mightBeNull) => mightBeNull !== null),
               },
             },
-          },
-          {
-            test: /\.svelte$/,
-            exclude: /node_modules\/(?!svelte)/,
-            use: [
-              {
-                loader: 'babel-loader',
-                options: {
-                  presets: [
-                    [
-                      '@babel/preset-env',
-                      {
-                        targets: { esmodules: true },
-                        bugfixes: true,
-                        loose: true,
-                        useBuiltIns: 'usage',
-                        corejs: '3.4',
-                        debug: isProduction,
-                      },
-                    ],
-                  ],
-                },
-              },
-              {
-                loader: 'svelte-loader',
-                options: {
-                  dev: !isProduction,
-                },
-              },
-            ],
           },
         ],
       },

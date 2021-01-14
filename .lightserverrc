@@ -6,7 +6,6 @@
   "quiet": true,
   "watchexps": [
     "src/js/**/*.js # npm run scripts:dev",
-    "src/js/**/*.svelte # npm run scripts:dev",
     "src/styles/**/*.css # npm run styles:dev # reloadcss",
     "dist/**/*.html",
     "src/images/"
