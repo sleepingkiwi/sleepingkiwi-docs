@@ -33,3 +33,46 @@
 }
 
 /* } */
+
+
+/** Flags and backgrounds
+ *  ------------------------------------------------------------------------------------------------
+**/
+
+.RichText--with-flag {
+
+  & .Wrap {
+    position: relative;
+    padding: var(--bsu);
+    border-radius: var(--radius-default);
+  }
+
+
+  & .RichText__flag {
+    position: absolute;
+    left: calc(var(--bsu-s) * -1);
+    top: calc(var(--bsu-s) * -1);
+    display: block;
+    padding: var(--bsu-xs);
+    border-radius: 100%;
+  }
+
+  &.RichText--priority-1 .Wrap,
+  &.RichText--priority-1 .RichText__flag {
+    background: var(--colour-background-priority-one);
+  }
+
+  &.RichText--priority-2 .Wrap,
+  &.RichText--priority-2 .RichText__flag {
+    background: var(--colour-background-priority-two);
+  }
+
+  &.RichText--priority-3 .Wrap,
+  &.RichText--priority-3 .RichText__flag {
+    background: var(--colour-background-priority-three);
+  }
+
+  & .RichText__flag + * {
+    margin-top: 0;
+  }
+}

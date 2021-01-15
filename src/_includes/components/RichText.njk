@@ -19,13 +19,19 @@
 
 {% macro RichText(
   content='',
-  align='left'
+  align='left',
+  flag,
+  priority
 ) %}
 <div
-  class="RichText RichText--align-{{ align }}"
+  class="RichText RichText--align-{{ align }} RichText--{{ 'with-flag' if flag else 'without-flag' }} RichText--priority-{{ priority or '0' }}"
 >
   {% call Wrap(flavour='readable', flows=true) %} {# readable width Wrap with flow #}
-
+    {% if flag %}
+      <span class="RichText__flag">
+        {{ flag }}
+      </span>
+    {% endif %}
     {% if content %}
       {{ content | markdownify | safe }}
     {% endif %}

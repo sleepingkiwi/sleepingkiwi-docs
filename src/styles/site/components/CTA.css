@@ -7,12 +7,13 @@
 
   & .CTA__a {
     text-align: center;
+    text-decoration: none;
     display: inline-block;
     padding: var(--bsu-s) var(--bsu-l);
     vertical-align: top;
-    background: var(--colour-secondary);
+    background: var(--colour-primary);
     color: var(--colour-invert);
-    border-radius: var(--radius-button);
+    border-radius: var(--radius-default);
     font-family: var(--ff-heading);
     font-weight: 800;
     border: 0;
@@ -24,7 +25,7 @@
 
     &:hover,
     &:focus {
-      background: var(--colour-primary);
+      background: var(--colour-secondary);
     }
   }
 }

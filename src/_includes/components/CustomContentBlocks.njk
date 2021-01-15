@@ -44,7 +44,9 @@
         {{
           RichText(
             content=contentBlock.text,
-            align=contentBlock.textAlign
+            align=contentBlock.textAlign,
+            flag=contentBlock.flag,
+            priority=contentBlock.priority
           )
         }}
       {% elif contentBlock.type === 'quote' %}
@@ -58,7 +60,8 @@
       {% elif contentBlock.type === 'image' %}
         {{
           InlineImage(
-            img=contentBlock.image
+            src=contentBlock.src,
+            imageWidth=(contentBlock.imageWidth or 'wide')
           )
         }}
       {% elif contentBlock.type === 'cta' %}

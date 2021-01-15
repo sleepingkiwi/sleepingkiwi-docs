@@ -54,6 +54,7 @@
   transition: all var(--time-transition) var(--ease-default);
   transition-property: opacity, color;
   color: var(--colour-subtle);
+  text-decoration: none;
 }
 
 .HeaderText__anchor-link:focus {

@@ -6,7 +6,7 @@
   **/
   --colour-primary: #185397; /* contrast ratio 7.2 */
   --colour-secondary: #a11b50; /* contrast ratio 7 */
-  --colour-highlight: #005871; /* contrast ratio 7.5 */
+  --colour-highlight: #333333; /* contrast ratio 7.5 */
   --colour-subtle: #5f7389; /* only AA for text - contrast ratio 4.6 -- https://color.review */
 
   /** inverted colours
@@ -20,4 +20,7 @@
   **/
   --colour-background-body: #f4f9fa;
   --colour-background-subtle: #ffffff;
+  --colour-background-priority-two: #e0ece8;
+  --colour-background-priority-one: #e0e5ec;
+  --colour-background-priority-three: #ece3e0;
 }

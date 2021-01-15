@@ -16,6 +16,10 @@
   & svg path {
     fill: var(--colour-primary);
   }
+
+  & a {
+    text-decoration: none;
+  }
 }
 
 @media (--column-break) {

@@ -46,7 +46,7 @@ genericContentBlocks:
           Rhoncus mattis rhoncus urna neque. Sit amet consectetur adipiscing elit. Non
           diam phasellus vestibulum lorem sed risus ultricies.
   - type: oneColumn
-    collapseTop: false
+    collapseTop: true
     title: Test page place holder text Two
     content:
       - type: header

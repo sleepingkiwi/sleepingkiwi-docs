@@ -4,7 +4,7 @@
 
 a {
   color: var(--colour-secondary);
-  text-decoration: none;
+  text-decoration: underline;
   transition:
     color var(--time-transition) var(--ease-default),
     background var(--time-transition) var(--ease-default);

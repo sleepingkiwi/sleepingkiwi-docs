@@ -1,0 +1,11 @@
+/** Code blocks
+ *  ------------------------------------------------------------------------------------------------
+**/
+
+code {
+  color: var(--colour-background-subtle);
+  background-color: var(--colour-primary);
+  padding: 2px 0.5rem;
+  word-wrap: break-word;
+  font-size: 0.9em;
+}
