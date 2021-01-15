@@ -1,20 +1,19 @@
 {
-  "name": "sleepingkiwi-eleventy",
-  "version": "1.2.0",
-  "description": "A starting point for building static sites with eleventy using netlify CMS for content",
+  "name": "sleepingkiwi-docs",
+  "version": "1.0.0",
+  "description": "A fairly basic place to start when writing documentation.",
   "keywords": [],
   "author": "sleepingkiwi",
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sleepingKiwi/sleepingkiwi-eleventy.git"
+    "url": "git+https://github.com/sleepingkiwi/sleepingkiwi-docs.git"
   },
   "bugs": {
-    "url": "https://github.com/sleepingKiwi/sleepingkiwi-eleventy/issues"
+    "url": "https://github.com/sleepingkiwi/sleepingkiwi-docs/issues"
   },
-  "homepage": "https://github.com/sleepingKiwi/sleepingkiwi-eleventy#readme",
+  "homepage": "https://github.com/sleepingkiwi/sleepingkiwi-docs#readme",
   "dependencies": {
-    "colorthief": "^2.3.2",
     "core-js": "^3.4.0",
     "unfetch": "^4.1.0"
   },
